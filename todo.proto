@@ -1,0 +1,32 @@
+syntax = "proto3";
+package todo;
+option go_package = "github.com/lucab2006/protobufs/generated/todo/v1";
+
+message TodoItem{
+    string Title = 1; 
+    bool done = 2;
+    int32 datecreated = 3;
+    optional int32 needdoneby = 4;
+    optional int32 edited = 5;
+    optional int32 ID = 6;
+    
+}
+
+message empty{
+    
+}
+
+message todolist{
+    repeated TodoItem items = 1;
+
+    optional string status = 99;
+}
+
+service TodoService {
+    rpc Get(empty) returns (todolist);
+    rpc Insert(TodoItem) returns (todolist);
+    rpc Update(TodoItem) returns (todolist);
+  }
+
+
+
